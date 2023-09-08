@@ -1,0 +1,70 @@
+#app {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+#map {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+
+.search {
+  position: fixed;
+  top: 2vh;
+  left: 2vw;
+  width: 400px;
+
+
+  &-content {
+    background: rgba(255, 255, 255, 1);
+    max-height: 50vh;
+    overflow-y: auto;
+    border-radius: 0 0 16px 16px;
+
+    &-list {
+      font-size: 13px;
+      color: #333;
+      padding: 8px 10px;
+
+      img {
+        width: 20px;
+        height: 20px;
+        margin-right: 4px;
+      }
+
+      span {
+        margin-left: 4px;
+        font-size: 12px;
+        color: #999;
+      }
+    }
+
+
+    &-info {
+      height: 80px;
+      border: 1px solid #333;
+    }
+  }
+}
+
+
+@media screen and (max-width: 960px) {
+  .search {
+    position: fixed;
+    top: 2vh;
+    left: 2%;
+    width: 96%;
+
+    &-content {
+      &-list {
+      }
+
+      &-info {
+      }
+
+    }
+  }
+}

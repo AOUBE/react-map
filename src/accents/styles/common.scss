@@ -1,0 +1,67 @@
+// 弹性盒子
+.d-flex {
+    display: flex;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.align-end {
+    align-items: flex-end;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-evenly {
+    justify-content: space-evenly;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.flex {
+    flex: 1;
+}
+
+.flex-direction {
+    flex-direction: column;
+}
+
+.flex-warp {
+    flex-wrap: wrap;
+}
+
+// 省略号
+.text-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nowarp {
+    white-space: nowrap;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-end {
+    text-align: end;
+}
+
+.pointer{
+    cursor:pointer;
+}
