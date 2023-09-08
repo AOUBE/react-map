@@ -1,10 +1,11 @@
 import {useEffect, useState} from 'react';
 import './home.scss';
-import {Map, Marker} from "react-amap";
+import {Map, Marker, Markers} from "react-amap";
 import {Input, message} from 'antd';
 import axios from 'axios';
 import SearchItem from "./components/SearchItem";
-import {regeo, inputTips, placeText, placeAround,placeDetail} from '../../api/amap'
+import {regeo, inputTips, placeText, placeAround, placeDetail} from '../../api/amap'
+import MarkerItem from "./components/MarkerItem";
 
 
 const {Search} = Input;
@@ -212,7 +213,6 @@ function Home() {
             let params = {
                 key: gdMapKey,
                 keywords: value,
-
                 region: region.adcode,
                 page_size: 25,
                 city_limit: true,
@@ -237,18 +237,35 @@ function Home() {
     }
 
     const searchListClick = (val) => {
-        console.log('searchListClick', val)
+        let params = {
+            key: gdMapKey,
+            id: val.id,
+            show_fields: "children,business,indoor,navi,photos"
+        }
+        placeDetail(params).then(res => {
+            if (res.data.status == 1) {
+                const b = res.data.pois.map(v => {
+                    let a = v.location.split(',')
+                    v.position = {
+                        latitude: '',
+                        longitude: ''
+                    }
+                    v.position.latitude = a[1]
+                    v.position.longitude = a[0]
+                    return v
+                })
+                setSearchMarkers(b)
+            }
+        }).finally(() => {
+            setSearchList([])
+        })
     }
 
     return (
         <div id="app" className="">
             <Map id='map' amapkey={gdMapKey} zoom={15} center={mapCenterPosition} plugins={plugins}>
-                <Marker position={userPosition}>
-                </Marker>
-                {/* <Markers
-                    markers={markers}
-                    useCluster={true}
-                /> */}
+                <Marker position={userPosition}/>
+                <Markers markers={searchMarkers} useCluster={true}/>
             </Map>
             <div className="search">
                 <Search className='search-input'
@@ -258,10 +275,10 @@ function Home() {
                     {
                         searchList.length > 0 ? searchList.map(v => {
                             return <SearchItem key={v.id} searchInfo={v} searchListClick={searchListClick}/>
-                        }) : (
-                            searchMarkers.length > 0 ? searchMarkers.map(v => {
-                            }) : ''
-                        )
+                        }) : (searchMarkers.length > 1 ? searchMarkers.map((v, j) => {
+                            return <MarkerItem key={v.id} markItem={v} index={j + 1}/>
+                        }) : '')
+
                     }
                 </div>
             </div>

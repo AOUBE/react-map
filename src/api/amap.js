@@ -27,7 +27,7 @@ export function placeText(params) {
     })
 }
 //周边搜索
-export function placeAround() {
+export function placeAround(params) {
     return axios({
         url: "https://restapi.amap.com/v5/place/around",
         method: 'get',
@@ -35,7 +35,7 @@ export function placeAround() {
     })
 }
 //ID搜索
-export function placeDetail() {
+export function placeDetail(params) {
     return axios({
         url: "https://restapi.amap.com/v5/place/detail",
         method: 'get',

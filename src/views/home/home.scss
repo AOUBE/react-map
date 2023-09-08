@@ -44,8 +44,18 @@
 
 
     &-info {
+      padding: 8px 10px;
       height: 80px;
-      border: 1px solid #333;
+
+      &-img {
+        width: 10px;
+        height: 10px;
+
+        img {
+          width: 100px;
+          height: 74px;
+        }
+      }
     }
   }
 }
